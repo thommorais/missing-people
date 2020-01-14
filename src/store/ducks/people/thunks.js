@@ -10,13 +10,13 @@ const {
 
 export function setSearch(string){
   return (dispatch, getState) => {
-    const state = getState()
+    const {missingPeople} = getState()
 
     if (!string) {
       return dispatch(search([]))
     }
 
-    const searched = state.missingPeople.people.filter(
+    const searched = missingPeople.people.filter(
       ({fullName}) => (fullName.toLowerCase().indexOf(string.toLowerCase() || '') >= 0)
     )
 
