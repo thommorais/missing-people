@@ -1,13 +1,85 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@tailwind screens;
+
+*, *:before, *:after{
+    box-sizing: border-box
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+body {
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  min-height: 100vh;
+  font-family: 'Montserrat', sans-serif;
+  @apply text-gray-800;
+}
+
+
+.btn-indigo{
+    @apply flex;
+    @apply items-center;
+    @apply bg-indigo-600;
+    @apply py-2;
+    @apply px-4;
+    @apply rounded-full;
+    @apply text-white;
+    @apply text-sm;
+}
+
+@screen md {
+    .btn-indigo{
+        @apply text-base
+    }
+}
+
+
+.btn-indigo svg{
+    @apply mr-2;
+}
+
+button:focus{
+    outline: none;
+}
+
+.btn-indigo:focus,
+.btn-indigo:hover{
+    @apply bg-indigo-800;
+}
+
+.btn-gray-ghost{
+    @apply py-2;
+    @apply px-4;
+    @apply rounded-full;
+    @apply text-gray-600;
+    @apply border-gray-500;
+    @apply border-2;
+}
+
+.btn-gray-ghost:focus,
+.btn-gray-ghost:hover{
+    @apply border-gray-700;
+}
+
+.btn-gray-ghost:focus path,
+.btn-gray-ghost:hover path{
+    fill: theme('colors.gray.600')
+}
+
+.missing-card{
+    border-radius: 1rem;
+}
+
+.button-wrp {
+    @apply flex;
+    align-items: center;
+}
+
+.button-wrp button:not(:last-child){
+    margin-right: 2vmin;
+}
+
+figure img{
+    @apply bg-gray-400;
 }
