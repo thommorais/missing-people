@@ -67,6 +67,7 @@ button:focus{
     fill: theme('colors.gray.600')
 }
 
+.loading-card,
 .missing-card{
     border-radius: 1rem;
 }
@@ -82,4 +83,28 @@ button:focus{
 
 figure img{
     @apply bg-gray-400;
+}
+
+
+.loading-card{
+    @apply relative;
+    @apply bg-gray-400;
+    min-height: 640px
+}
+
+.loading-card:after {
+    display: block;
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    transform: translateX(-100%);
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, .2), transparent);
+    animation: loading 1.5s infinite;
+}
+
+@keyframes loading {
+  100% {
+    transform: translateX(100%);
+  }
 }
