@@ -28,29 +28,26 @@ export function setSearch(string){
 }
 
 
-export function fetchMissingPeople() {
+export function getMissingPeople() {
   return async (dispatch) => {
 
+    dispatch(loading())
 
-    console.log('teste')
-
-    const people = await getPeople()
-
-    console.log(people)
+    const people = await getPeople().then(e => e)
 
     const formatedDate = people.map(({description, height, gender, age, ...rest} ) => ({
       ...rest,
-      id: `${rest.name}-${rest.lastName}`,
+      id: `${rest.first_name}-${rest.last_name}`,
+      fullName: `${rest.first_name} ${rest.last_name}`,
       description: {
         description,
         height,
         gender,
         age,
-        picture: `https://i.pravatar.cc/340?img=${rest.index}`
+        picture: `https://i.pravatar.cc/340?img=${rest.umid}`
       }
     }))
 
-    dispatch(loading())
-    setTimeout(() => dispatch(get(formatedDate)), 3000)
+    dispatch(get(formatedDate))
   }
 }

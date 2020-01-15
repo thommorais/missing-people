@@ -8,7 +8,7 @@ function MissingCard({person}){
         <article className="missing-card bg-white p-0 overflow-hidden hover:shadow-lg mb-4 sm:mb-0">
             <Picture url={person.description.picture} />
             <div className="p-6 pb-0">
-                <ProfileHeader name={person.fullName} missingDate={person.dateOfMissing} address={person.address} />
+                <ProfileHeader name={`${person.fullName}`} missingDate={person.missing_since} address={person.country} />
                 <Description description={person.description} />
             </div>
             <hr className="border-b-1 border-gray-200 my-4 mx-4" />

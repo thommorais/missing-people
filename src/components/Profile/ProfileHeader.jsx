@@ -5,7 +5,7 @@ import dayjs from 'dayjs'
 function ProfileHeader({name, missingDate, address}){
 
     const now = dayjs()
-    const missingDays = dayjs.unix(missingDate)
+    const missingDays = dayjs(missingDate)
     const days = now.diff(missingDays, 'days')
 
     return (
