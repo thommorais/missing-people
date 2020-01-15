@@ -3,6 +3,7 @@ import React, {useEffect, useState, lazy, Suspense} from 'react'
 import { Link } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { fetchMissingPeople } from '../store/ducks/people/thunks'
+import {getPeople} from '../services'
 
 const MissingCard = lazy(() => import('../components/MissingCard'))
 const ComponentWithGeolocation = lazy(() => import('../components/Geolocation'))
@@ -15,7 +16,7 @@ function HomePage(){
     const {people, search, loaded} = useSelector(({missingPeople}) => missingPeople)
     const dispatch = useDispatch()
 
-    useEffect(() => dispatch(fetchMissingPeople()), [])
+    useEffect(() => dispatch(() => fetchMissingPeople()), [])
 
     useEffect(() => {
         setData(!search.length ? people : search)

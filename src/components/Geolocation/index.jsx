@@ -9,12 +9,11 @@ const ComponentWithGeolocation = () => {
   const geolocation = useGeolocation()
 
   useEffect(() => {
-    console.log(geolocation)
-    if(geolocation.latitude){
-      fetch(api(geolocation.latitude, geolocation.longitude))
-      .then(response => response.json())
-      .then(address => setAddress(address))
-    }
+    // if(geolocation.latitude){
+    //   fetch(api(geolocation.latitude, geolocation.longitude))
+    //   .then(response => response.json())
+    //   .then(address => setAddress(address))
+    // }
   }, [geolocation])
 
   return address.region
