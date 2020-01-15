@@ -1,7 +1,11 @@
 import React, {useEffect, useState} from 'react'
 import dayjs from 'dayjs'
+import { Redirect } from 'react-router-dom'
+
 import Description from './Description'
 import ProfileHeader from './ProfileHeader'
+import Loading from '../Loading'
+
 import CTAs from './CTAs'
 import Picture from './Picture'
 import { useSelector, useDispatch } from 'react-redux'
@@ -10,9 +14,15 @@ import { fetchMissingPeople } from '../../store/ducks/people/thunks'
 
 
 function Profile({id}){
+
     const [person, setPerson] = useState({})
-    const {people, loaded} = useSelector(({missingPeople}) => missingPeople)
+    const {people, loaded, loading} = useSelector(({missingPeople}) => missingPeople)
     const dispatch = useDispatch()
+
+    useEffect(() => {
+        const person = people.find(person => person.id === id)
+        person && setPerson(person)
+    }, [people, id])
 
     useEffect(() => {
         if(!loaded){
@@ -20,13 +30,17 @@ function Profile({id}){
         }
     }, [dispatch, loaded])
 
-    useEffect(() => {
-        const person = people.find(person => person.id === id)
-        person && setPerson(person)
-    }, [people, id])
 
-    if(!loaded || !person.id){
-        return null
+    if(loading){
+        return <Loading />
+    }
+
+    if((!loaded && !loading) || !person.id){
+        return (
+            <div className="flex justify-center items-center">
+                <h3 className="text-red-600 text-lg">Not found</h3>
+            </div>
+        )
     }
 
     return (

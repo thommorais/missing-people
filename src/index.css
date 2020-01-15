@@ -77,7 +77,7 @@ button:focus{
     align-items: center;
 }
 
-.button-wrp button:not(:last-child){
+.button-wrp a:not(:last-child){
     margin-right: 2vmin;
 }
 
@@ -85,6 +85,9 @@ figure img{
     @apply bg-gray-400;
 }
 
+button{
+    cursor: pointer;
+}
 
 .loading-card{
     @apply relative;

@@ -4,7 +4,9 @@ import mock from './mock'
 
 const {
   get,
-  search
+  search,
+  loading,
+  fail
 } = people
 
 
@@ -39,8 +41,9 @@ export function fetchMissingPeople() {
     }
   }))
 
-  return (dispatch, getState) => {
-    // const state = getState()
-    setTimeout(() => dispatch(get(formatedDate)), 1000)
+  return (dispatch) => {
+    dispatch(loading())
+    // setTimeout(() => dispatch(fail()), 1500)
+    setTimeout(() => dispatch(get(formatedDate)), 3000)
   }
 }

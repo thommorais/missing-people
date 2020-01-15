@@ -1,11 +1,11 @@
-import React, {useEffect, useState} from 'react'
-import MissingCard from '../components/MissingCard'
-import {
-  Link
-} from 'react-router-dom'
+import React, {useEffect, useState, lazy, Suspense} from 'react'
 
+import { Link } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { fetchMissingPeople } from '../store/ducks/people/thunks'
+
+const MissingCard = lazy(() => import('../components/MissingCard'))
+const ComponentWithGeolocation = lazy(() => import('../components/Geolocation'))
 
 
 function HomePage(){
@@ -24,21 +24,23 @@ function HomePage(){
 
     return (
         <>
-            <div className="flex flex-wrap mt-6 w-full max-w-6xl relative mx-auto sm:px-6 md:px-12">
-                <h3 className="text-4xl font-light">Porto Alegre, RS, Brazil</h3>
-            </div>
-            <div className="sm:grid mt-6 w-full max-w-6xl relative mx-auto mb-24 md:px-6 sm:grid-columns-2 sm:grid-gap-8 lg:grid-columns-3">
+            <Suspense fallback={<div>Loading...</div>}>
+                <ComponentWithGeolocation />
+            </Suspense>
+            <div className="sm:grid mt-6 w-full max-w-6xl relative mx-auto mb-24 sm:grid-columns-2 sm:grid-gap-8 lg:grid-columns-3">
 
                 {
                     !loaded && [...Array(6).keys()].map(e => (
-                        <article href="/" className="loading-card" key={e} />
+                        <article  className="loading-card" key={e} />
                     ))
                 }
 
                 {
                     loaded && data.map(({name, lastName, id, ...data}) => (
                         <Link to={`profile/${id}`} key={lastName} >
-                            <MissingCard person={{...data, name, lastName, id}} />
+                            <Suspense fallback={<article className="loading-card" />}>
+                                <MissingCard person={{...data, name, lastName, id}} />
+                            </Suspense>
                         </Link>
                     ))
                 }

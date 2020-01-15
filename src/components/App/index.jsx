@@ -19,7 +19,7 @@ function App(){
         <Provider store={store}>
             <Router>
                 <Header />
-                <div className="px-6">
+                <div className="px-6 relative z-10">
                     <Switch>
                         <Route path="/" exact component={HomePage} />
                         <Route path="/profile/:id"  component={ProfilePage} />
