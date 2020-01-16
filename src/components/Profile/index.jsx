@@ -50,7 +50,7 @@ function Profile({id}){
                 <div className="p-6 pb-0 m:w-full md:w-1/2">
                     <ProfileHeader name={`${person.fullName}`} missingDate={person.missing_since} address={person.country} />
                     <Description description={person.description} />
-                    <CTAs className="p-0 mt-4 justify-start" />
+                    <CTAs className="p-0 mt-4 justify-start" data={person} />
                 </div>
             </header>
             <div className="leading-loose py-6 px-3">

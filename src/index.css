@@ -111,3 +111,21 @@ button{
     transform: translateX(100%);
   }
 }
+
+.not-found{
+    @apply bg-white;
+    @apply rounded-lg;
+    @apply p-6;
+    @apply shadow-xl;
+    margin-top: 15vh;
+    grid-column: 2;
+}
+
+
+.inactive{
+    opacity: 0.4;
+}
+
+input:disabled{
+    opacity: 0.3;
+}

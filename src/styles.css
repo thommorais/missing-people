@@ -754,6 +754,10 @@ img {
   color: #718096;
 }
 
+.text-gray-700 {
+  color: #4a5568;
+}
+
 .text-red-600 {
   color: #e53e3e;
 }
@@ -946,4 +950,21 @@ button{
   100% {
     transform: translateX(100%);
   }
+}
+
+.not-found{
+  background-color: #fff;
+  border-radius: 0.5rem;
+  padding: 1.5rem;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  margin-top: 15vh;
+  grid-column: 2;
+}
+
+.inactive{
+  opacity: 0.4;
+}
+
+input:disabled{
+  opacity: 0.3;
 }

@@ -1,11 +1,19 @@
 export const Types = {
   GET: 'transactionHistory/GET',
-  SEARCH: 'transactionHistory/SEARCH',
   LOADING: 'transactionHistory/LOADING',
   FAIL: 'transactionHistory/FAIL',
+  SEARCH: 'transactionHistory/SEARCH',
+  FAIL_SEARCH: 'transactionHistory/FAIL_SEARCH',
 }
 
 export const Creators = {
+  failSearch: () => ({
+    type: Types.FAIL_SEARCH,
+    payload: {
+      search: [],
+      failSearch: true
+    },
+  }),
   fail: () => ({
     type: Types.FAIL,
     payload: {
@@ -25,6 +33,7 @@ export const Creators = {
     type: Types.SEARCH,
     payload: {
       search,
+      failSearch: false
     },
   }),
   loading: () => ({
@@ -39,6 +48,7 @@ export const Creators = {
 const initialState = {
   loaded: false,
   loading: false,
+  failSearch: false,
   people : [],
   search: []
 }
@@ -51,10 +61,6 @@ function missingPeople(state = initialState, action) {
       return { ...state, ...payload }
     }
 
-    case Types.SEARCH: {
-      return { ...state, ...payload}
-    }
-
     case Types.LOADING: {
       return { ...state, ...payload}
     }
@@ -62,6 +68,15 @@ function missingPeople(state = initialState, action) {
     case Types.FAIL: {
       return { ...state, ...payload}
     }
+
+    case Types.SEARCH: {
+      return { ...state, ...payload}
+    }
+
+    case Types.FAIL_SEARCH: {
+      return { ...state, ...payload}
+    }
+
 
     default:
       return state

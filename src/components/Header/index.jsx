@@ -1,10 +1,12 @@
 import React from 'react'
 import {
-  Link
-} from "react-router-dom"
+  Link,
+  withRouter
+} from 'react-router-dom'
 import Search from '../Search'
 
 function Header(){
+
     return (
         <header className="flex bg-white border-b border-gray-200 inset-x-0 z-50 items-center py-2 sticky top-0">
                 <div className="w-full max-w-6xl relative mx-auto">
@@ -24,4 +26,4 @@ function Header(){
     )
 }
 
-export default Header
+export default withRouter(React.memo(Header))

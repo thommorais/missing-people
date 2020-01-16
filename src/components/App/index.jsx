@@ -22,7 +22,7 @@ function App(){
                 <div className="px-6 relative z-10">
                     <Switch>
                         <Route path="/" exact component={HomePage} />
-                        <Route path="/profile/:id"  component={ProfilePage} />
+                        <Route path="/profile/:id" exact component={ProfilePage} />
                     </Switch>
                 </div>
             </Router>

@@ -1,13 +1,12 @@
 import { Creators as people } from './index'
 import {getPeople} from '../../../services'
 
-import mock from './mock'
-
 const {
   get,
   search,
   loading,
-  fail
+  fail,
+  failSearch
 } = people
 
 
@@ -23,7 +22,12 @@ export function setSearch(string){
       ({fullName}) => (fullName.toLowerCase().indexOf(string.toLowerCase() || '') >= 0)
     )
 
-    dispatch(search(searched))
+    if(string && !searched.length){
+      return dispatch(failSearch())
+    }
+
+
+    return dispatch(search(searched))
   }
 }
 
@@ -44,7 +48,7 @@ export function getMissingPeople() {
         height,
         gender,
         age,
-        picture: `https://i.pravatar.cc/340?img=${rest.umid}`
+        picture: `https://i.pravatar.cc/360?u=${rest.umid}`
       }
     }))
 
