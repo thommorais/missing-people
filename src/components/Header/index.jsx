@@ -28,7 +28,7 @@ function Header({history}){
     return (
         <header className="flex bg-white border-b border-gray-200 inset-x-0 z-50 items-center py-2 sticky top-0">
                 <div className="w-full max-w-6xl relative mx-auto">
-                    <div className="flex items-center flex-wrap">
+                    <div className="flex items-center flex-wrap justify-between">
                         <div className="px-6 mb-2 sm:mb-0">
                              <Link to="/">
                                 <svg width="210" height="51" viewBox="0 0 210 51" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -38,7 +38,7 @@ function Header({history}){
                             </Link>
                         </div>
 
-                        <div className={`flex flex-grow px-6 ${history.location.pathname === '/' ? 'active' : 'inactive'}`}>
+                        <div className={`flex px-6 ${history.location.pathname === '/' ? 'active' : 'inactive'}`}>
                             <Select
                                     showSearch
                                     defaultValue={country}

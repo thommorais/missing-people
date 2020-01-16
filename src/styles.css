@@ -649,6 +649,10 @@ img {
   justify-content: center;
 }
 
+.justify-between {
+  justify-content: space-between;
+}
+
 .flex-grow {
   flex-grow: 1;
 }
