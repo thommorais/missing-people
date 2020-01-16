@@ -22,13 +22,14 @@ export function getLocation(lat, long) {
 export function getCountries() {
   return async (dispatch) => {
     dispatch(loading())
-    const countries = await fetchListOfCountries().then(e => e)
-    dispatch(getCountriesList(countries))
+    const {data} = await fetchListOfCountries().then(countries => countries)
+    dispatch(getCountriesList(data))
   }
 }
 
 export function chooseCountry(country) {
   return (dispatch) => {
+    localStorage.setItem('country', country)
     dispatch(setCountry(country))
   }
 }

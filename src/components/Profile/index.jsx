@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from 'react'
 import dayjs from 'dayjs'
-import { Redirect } from 'react-router-dom'
 
 import Description from './Description'
 import ProfileHeader from './ProfileHeader'
@@ -10,14 +9,18 @@ import CTAs from './CTAs'
 import Picture from './Picture'
 import { useSelector, useDispatch } from 'react-redux'
 import { getMissingPeople } from '../../store/ducks/people/thunks'
-
-
+import { getPeopleForCountry } from '../../store/ducks/people/thunks'
 
 function Profile({id}){
 
     const [person, setPerson] = useState({})
     const {people, loaded, loading} = useSelector(({missingPeople}) => missingPeople)
+    const {country} = useSelector(state => state.location)
     const dispatch = useDispatch()
+
+    useEffect(() => {
+        dispatch(getPeopleForCountry(country))
+    }, [country, dispatch])
 
     useEffect(() => {
         const person = people.find(person => person.id === id)

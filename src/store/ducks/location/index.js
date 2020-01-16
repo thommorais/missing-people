@@ -43,11 +43,14 @@ export const Creators = {
   }),
 }
 
+
+const country = localStorage.getItem('country')
+
 const initialState = {
   loaded: false,
   loading: false,
   countries: [],
-  country: 'United States'
+  country: country ? country : 'United States'
 }
 
 function location(state = initialState, action) {

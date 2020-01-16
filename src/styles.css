@@ -908,10 +908,6 @@ img {
   width: 1rem;
 }
 
-.w-1\/2 {
-  width: 50%;
-}
-
 .w-full {
   width: 100%;
 }
@@ -1085,8 +1081,8 @@ button{
   border-radius: 0.5rem;
   padding: 1.5rem;
   box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-  margin-top: 15vh;
-  grid-column: 2;
+  margin-top: 15px;
+  grid-column: 1;
 }
 
 .inactive{

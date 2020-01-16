@@ -39,6 +39,7 @@ export function setSearch(string){
     if(string && !searched.length){
       return dispatch(failSearch())
     }
+
     return dispatch(search(searched))
   }
 }
@@ -47,17 +48,18 @@ export function getMissingPeople() {
   return async (dispatch) => {
     dispatch(loading())
     const people = await fetchPeople().then(e => e)
-    const formatedDate = filterDataPeople(people)
-    dispatch(get(formatedDate))
+    const formatedData = filterDataPeople(people)
+    dispatch(get(formatedData))
   }
 }
 
 export function getPeopleForCountry(country){
   return async (dispatch) => {
     dispatch(loading())
-    const people = await fetchPeopleForCountry(country)
-    const formatedDate = filterDataPeople(people)
-    dispatch(get(formatedDate))
+    const {data, headers} = await fetchPeopleForCountry(country)
+    console.log(headers)
+    const formatedData = filterDataPeople(data)
+    dispatch(get(formatedData))
   }
 }
 

@@ -123,10 +123,9 @@ button{
     @apply rounded-lg;
     @apply p-6;
     @apply shadow-xl;
-    margin-top: 15vh;
-    grid-column: 2;
+    margin-top: 15px;
+    grid-column: 1;
 }
-
 
 .inactive{
     opacity: 0.2;

@@ -21,12 +21,6 @@ function Description({description}){
                 <li className="text-sm">
                     <strong className="font-semibold">Height:</strong>
                         <span> {description.height}</span>
-                    </li>
-                <li className="text-sm">
-                    <strong className="font-semibold">Ethnic:</strong>
-                </li>
-                <li className="text-sm">
-                    <strong className="font-semibold">Appearance:</strong>
                 </li>
                 <li className="text-sm">
                     <strong className="font-semibold">Gender:</strong>
