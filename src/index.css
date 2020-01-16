@@ -3,6 +3,12 @@
 @tailwind utilities;
 @tailwind screens;
 
+@import "../node_modules/antd/es/style/index.css";
+@import "../node_modules/antd/es/auto-complete/style/index.css";
+@import "../node_modules/antd/es/select/style/index.css";
+@import "../node_modules/antd/es/input/style/index.css";
+
+
 *, *:before, *:after{
     box-sizing: border-box
 }
@@ -14,8 +20,8 @@ body {
   min-height: 100vh;
   font-family: 'Montserrat', sans-serif;
   @apply text-gray-800;
-}
 
+}
 
 .btn-indigo{
     @apply flex;
@@ -123,9 +129,50 @@ button{
 
 
 .inactive{
-    opacity: 0.4;
+    opacity: 0.2;
+    pointer-events: none;
 }
 
 input:disabled{
     opacity: 0.3;
+    pointer-events: none;
+}
+
+.ant-select-show-search{
+    max-width: 420px;
+    @apply w-10/12;
+}
+
+.ant-select-auto-complete.ant-select .ant-input{
+    @apply bg-gray-200;
+    @apply rounded-lg;
+    @apply leading-normal;
+    @apply p-2;
+    @apply outline-none;
+    @apply border-0;
+    height: auto;
+}
+
+.ant-select-selection .ant-select-selection__placeholder{
+    @apply text-gray-800;
+}
+
+.ant-select{
+    flex: auto;
+    min-width: 300px;
+}
+
+.ant-select-selection--single{
+    height: auto;
+    @apply bg-gray-200;
+    @apply rounded-lg;
+    @apply leading-normal;
+    @apply p-2;
+    @apply outline-none;
+    @apply border-0;
+}
+
+.ant-select-open .ant-select-selection{
+    @apply border-0;
+    @apply shadow-none;
 }

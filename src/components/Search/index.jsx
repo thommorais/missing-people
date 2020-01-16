@@ -14,13 +14,11 @@ function Search({history}){
       dispatch(setSearch(newValue))
   }, 360))
 
-  console.log(history.location.pathname)
-
   const onChange = useCallback(value => throttled.current(value.target.value),[])
 
     return (
-        <div className={`flex flex-grow ${history.location.pathname === '/' ? 'active' : 'inactive'}`}>
-            <div className="w-full px-6">
+        <div className={`flex flex-grow pt-8 w-full m-auto max-w-6xl ${history.location.pathname === '/' ? 'active' : 'inactive'}`}>
+            <div className="w-1/2">
                 <div className="inset-y-0 left-0 flex items-center relative ">
                     <svg className="fill-current pointer-events-none text-gray-600 w-4 h-4 absolute ml-4" viewBox="0 0 20 20">
                         <path d="M12.9 14.32a8 8 0 1 1 1.41-1.41l5.35 5.33-1.42 1.42-5.33-5.34zM8 14A6 6 0 1 0 8 2a6 6 0 0 0 0 12z"></path>

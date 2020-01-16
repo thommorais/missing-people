@@ -61,6 +61,11 @@ hr {
  * 2. Correct the odd `em` font sizing in all browsers.
  */
 
+pre {
+  font-family: monospace, monospace; /* 1 */
+  font-size: 1em; /* 2 */
+}
+
 /* Text-level semantics
    ========================================================================== */
 
@@ -77,11 +82,17 @@ a {
  * 2. Add the correct text decoration in Chrome, Edge, IE, Opera, and Safari.
  */
 
+abbr[title] {
+  border-bottom: none; /* 1 */
+  text-decoration: underline; /* 2 */
+  text-decoration: underline dotted; /* 2 */
+}
+
 /**
  * Add the correct font weight in Chrome, Edge, and Safari.
  */
 
-
+b,
 strong {
   font-weight: bolder;
 }
@@ -91,7 +102,9 @@ strong {
  * 2. Correct the odd `em` font sizing in all browsers.
  */
 
-code {
+code,
+kbd,
+samp {
   font-family: monospace, monospace; /* 1 */
   font-size: 1em; /* 2 */
 }
@@ -100,10 +113,30 @@ code {
  * Add the correct font size in all browsers.
  */
 
+small {
+  font-size: 80%;
+}
+
 /**
  * Prevent `sub` and `sup` elements from affecting the line height in
  * all browsers.
  */
+
+sub,
+sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+
+sub {
+  bottom: -0.25em;
+}
+
+sup {
+  top: -0.5em;
+}
 
 /* Embedded content
    ========================================================================== */
@@ -125,7 +158,10 @@ img {
  */
 
 button,
-input {
+input,
+optgroup,
+select,
+textarea {
   font-family: inherit; /* 1 */
   font-size: 100%; /* 1 */
   line-height: 1.15; /* 1 */
@@ -147,7 +183,8 @@ input { /* 1 */
  * 1. Remove the inheritance of text transform in Firefox.
  */
 
-button { /* 1 */
+button,
+select { /* 1 */
   text-transform: none;
 }
 
@@ -189,6 +226,10 @@ button:-moz-focusring,
  * Correct the padding in Firefox.
  */
 
+fieldset {
+  padding: 0.35em 0.75em 0.625em;
+}
+
 /**
  * 1. Correct the text wrapping in Edge and IE.
  * 2. Correct the color inheritance from `fieldset` elements in IE.
@@ -196,13 +237,30 @@ button:-moz-focusring,
  *    `fieldset` elements in all browsers.
  */
 
+legend {
+  box-sizing: border-box; /* 1 */
+  color: inherit; /* 2 */
+  display: table; /* 1 */
+  max-width: 100%; /* 1 */
+  padding: 0; /* 3 */
+  white-space: normal; /* 1 */
+}
+
 /**
  * Add the correct vertical alignment in Chrome, Firefox, and Opera.
  */
 
+progress {
+  vertical-align: baseline;
+}
+
 /**
  * Remove the default vertical scrollbar in IE 10+.
  */
+
+textarea {
+  overflow: auto;
+}
 
 /**
  * 1. Add the correct box sizing in IE 10.
@@ -263,6 +321,10 @@ button:-moz-focusring,
  * Add the correct display in all browsers.
  */
 
+summary {
+  display: list-item;
+}
+
 /* Misc
    ========================================================================== */
 
@@ -309,13 +371,19 @@ html {
  * Removes the default spacing and border for appropriate elements.
  */
 
-
+blockquote,
+dl,
+dd,
 h1,
+h2,
 h3,
 h4,
+h5,
+h6,
 hr,
 figure,
-p {
+p,
+pre {
   margin: 0;
 }
 
@@ -334,7 +402,12 @@ button:focus {
   outline: 5px auto -webkit-focus-ring-color;
 }
 
+fieldset {
+  margin: 0;
+  padding: 0;
+}
 
+ol,
 ul {
   list-style: none;
   margin: 0;
@@ -402,7 +475,12 @@ img {
   border-style: solid;
 }
 
-input::placeholder {
+textarea {
+  resize: vertical;
+}
+
+input::placeholder,
+textarea::placeholder {
   color: #a0aec0;
 }
 
@@ -411,9 +489,16 @@ button,
   cursor: pointer;
 }
 
+table {
+  border-collapse: collapse;
+}
+
 h1,
+h2,
 h3,
-h4 {
+h4,
+h5,
+h6 {
   font-size: inherit;
   font-weight: inherit;
 }
@@ -437,7 +522,10 @@ a {
  */
 
 button,
-input {
+input,
+optgroup,
+select,
+textarea {
   padding: 0;
   line-height: inherit;
   color: inherit;
@@ -450,8 +538,10 @@ input {
  * 'mono' font family.
  */
 
-
-code {
+pre,
+code,
+kbd,
+samp {
   font-family: Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }
 
@@ -535,6 +625,14 @@ img {
   display: flex;
 }
 
+.table {
+  display: table;
+}
+
+.hidden {
+  display: none;
+}
+
 .flex-wrap {
   flex-wrap: wrap;
 }
@@ -553,6 +651,12 @@ img {
 
 .flex-grow {
   flex-grow: 1;
+}
+
+.clearfix:after {
+  content: "";
+  display: table;
+  clear: both;
 }
 
 .font-light {
@@ -589,6 +693,10 @@ img {
 
 .m-0 {
   margin: 0;
+}
+
+.m-auto {
+  margin: auto;
 }
 
 .my-4 {
@@ -695,6 +803,10 @@ img {
   padding-right: 1rem;
 }
 
+.pt-8 {
+  padding-top: 2rem;
+}
+
 .pl-10 {
   padding-left: 2.5rem;
 }
@@ -788,8 +900,16 @@ img {
   white-space: nowrap;
 }
 
+.w-1 {
+  width: 0.25rem;
+}
+
 .w-4 {
   width: 1rem;
+}
+
+.w-1\/2 {
+  width: 50%;
 }
 
 .w-full {
@@ -840,6 +960,14 @@ img {
     grid-template-columns: repeat(3, 1fr);
   }
 }
+
+@import "../node_modules/antd/es/style/index.css";
+
+@import "../node_modules/antd/es/auto-complete/style/index.css";
+
+@import "../node_modules/antd/es/select/style/index.css";
+
+@import "../node_modules/antd/es/input/style/index.css";
 
 *, *:before, *:after{
   box-sizing: border-box
@@ -962,9 +1090,45 @@ button{
 }
 
 .inactive{
-  opacity: 0.4;
+  opacity: 0.2;
+  pointer-events: none;
 }
 
 input:disabled{
   opacity: 0.3;
+  pointer-events: none;
+}
+
+.ant-select-auto-complete.ant-select .ant-input{
+  background-color: #edf2f7;
+  border-radius: 0.5rem;
+  line-height: 1.5;
+  padding: 0.5rem;
+  outline: 0;
+  border-width: 0;
+  height: auto;
+}
+
+.ant-select-selection .ant-select-selection__placeholder{
+  color: #2d3748;
+}
+
+.ant-select{
+  flex: auto;
+  min-width: 300px;
+}
+
+.ant-select-selection--single{
+  height: auto;
+  background-color: #edf2f7;
+  border-radius: 0.5rem;
+  line-height: 1.5;
+  padding: 0.5rem;
+  outline: 0;
+  border-width: 0;
+}
+
+.ant-select-open .ant-select-selection{
+  border-width: 0;
+  box-shadow: none;
 }

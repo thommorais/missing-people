@@ -1,10 +1,10 @@
 import React, {useEffect, useState, lazy, Suspense} from 'react'
 import { Link } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
+
 import { getMissingPeople } from '../../store/ducks/people/thunks'
 
 const MissingCard = lazy(() => import('../MissingCard'))
-
 
 function MissingPeopleList(){
 
@@ -14,13 +14,14 @@ function MissingPeopleList(){
     const dispatch = useDispatch()
 
     useEffect(() => {
-        dispatch(getMissingPeople())
+        if(!loaded){
+            dispatch(getMissingPeople())
+        }
     }, [])
 
     useEffect(() => {
         setData(!search.length ? people : search)
     }, [people, search])
-
 
     if(failSearch){
         return (

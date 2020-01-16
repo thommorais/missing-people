@@ -7,7 +7,6 @@ import {
   Route,
 } from 'react-router-dom'
 
-
 import Header from '../Header'
 import HomePage from '../../page/Home'
 import ProfilePage from '../../page/Profile'

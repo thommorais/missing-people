@@ -1,11 +1,29 @@
-import React from 'react'
+import React, {useEffect, useCallback, useState} from 'react'
+import { Select } from 'antd'
 import {
   Link,
   withRouter
 } from 'react-router-dom'
-import Search from '../Search'
+import { useSelector, useDispatch } from 'react-redux'
+import { getCountries, chooseCountry } from '../../store/ducks/location/thunks'
+import { getPeopleForCountry } from '../../store/ducks/people/thunks'
 
-function Header(){
+const { Option } = Select
+
+function Header({history}){
+    const {countries, country} = useSelector(state => state.location)
+
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        dispatch(getCountries())
+    }, [dispatch])
+
+    useEffect(() => {
+        dispatch(getPeopleForCountry(country))
+    }, [country, dispatch])
+
+    const onChange = useCallback(country => dispatch(chooseCountry(country)), [])
 
     return (
         <header className="flex bg-white border-b border-gray-200 inset-x-0 z-50 items-center py-2 sticky top-0">
@@ -19,7 +37,23 @@ function Header(){
                                 </svg>
                             </Link>
                         </div>
-                        <Search />
+
+                        <div className={`flex flex-grow px-6 ${history.location.pathname === '/' ? 'active' : 'inactive'}`}>
+                            <Select
+                                    showSearch
+                                    defaultValue={country}
+                                    placeholder="Select a country"
+                                    optionFilterProp="children"
+                                    onChange={onChange}
+                                    filterOption={(input, option) =>
+                                    option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+                                    }
+                                >
+                                    {countries.map(country => <Option key={country} value={country}>{country}</Option>)}
+
+                                </Select>
+                        </div>
+
                     </div>
                 </div>
            </header>

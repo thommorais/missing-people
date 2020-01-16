@@ -2,6 +2,8 @@ export const Types = {
   GET: 'location/GET',
   LOADING: 'location/LOADING',
   FAIL: 'location/FAIL',
+  GET_COUNTRIES: 'location/GET_COUNTRIES',
+  SET_COUNTRY: 'location/SET_COUNTRY',
 }
 
 export const Creators = {
@@ -20,6 +22,18 @@ export const Creators = {
       loading: false,
     },
   }),
+  getCountriesList: countries => ({
+    type: Types.GET_COUNTRIES,
+    payload: {
+      countries
+    },
+  }),
+  setCountry: country => ({
+    type: Types.SET_COUNTRY,
+    payload: {
+      country
+    },
+  }),
   loading: () => ({
     type: Types.LOADING,
     payload: {
@@ -29,12 +43,11 @@ export const Creators = {
   }),
 }
 
-const address = localStorage.getItem('address')
-
 const initialState = {
-  loaded: address ? true : false,
+  loaded: false,
   loading: false,
-  locations: address ? JSON.parse(address) : ''
+  countries: [],
+  country: 'United States'
 }
 
 function location(state = initialState, action) {
@@ -46,6 +59,14 @@ function location(state = initialState, action) {
     }
 
     case Types.SEARCH: {
+      return { ...state, ...payload}
+    }
+
+    case Types.GET_COUNTRIES: {
+      return { ...state, ...payload}
+    }
+
+    case Types.SET_COUNTRY: {
       return { ...state, ...payload}
     }
 
