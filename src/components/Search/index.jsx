@@ -17,7 +17,7 @@ function Search({history}){
   const onChange = useCallback(value => throttled.current(value.target.value),[])
 
     return (
-        <div className={`flex flex-grow pt-8 w-full m-auto max-w-6xl ${history.location.pathname === '/' ? 'active' : 'inactive'}`}>
+        <div className={`flex justify-between max-w-6xl ${history.location.pathname === '/' ? 'active' : 'inactive'}`}>
             <div className="w-2xl">
                 <div className="inset-y-0 left-0 flex items-center relative ">
                     <svg className="fill-current pointer-events-none text-gray-600 w-4 h-4 absolute ml-4" viewBox="0 0 20 20">

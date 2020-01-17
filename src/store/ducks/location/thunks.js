@@ -1,13 +1,14 @@
 import { Creators } from './index'
+import { Creators as peopleCreators } from '../people'
+
 import {fetchLocation, fetchListOfCountries} from '../../../services'
 
 const {
   get,
   loading,
   getCountriesList,
-  setCountry
+  setCountry,
 } = Creators
-
 
 export function getLocation(lat, long) {
   return async (dispatch) => {
@@ -29,6 +30,7 @@ export function getCountries() {
 
 export function chooseCountry(country) {
   return (dispatch) => {
+    dispatch(peopleCreators.loading())
     localStorage.setItem('country', country)
     dispatch(setCountry(country))
   }

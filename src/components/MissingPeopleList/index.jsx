@@ -1,18 +1,26 @@
 import React, {useEffect, useState, lazy, Suspense} from 'react'
 import { Link } from 'react-router-dom'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
+import { getPeopleForCountry } from '../../store/ducks/people/thunks'
 
 const MissingCard = lazy(() => import('../MissingCard'))
 
 function MissingPeopleList(){
 
     const [data, setData] = useState([])
-
-    const {people, search, loaded, failSearch} = useSelector(({missingPeople}) => missingPeople)
+    const {people, search, loaded, failSearch} = useSelector(({ missingPeople }) => missingPeople)
+    const {country} = useSelector(({location}) => location)
+    const dispatch = useDispatch()
 
     useEffect(() => {
-        setData(!search.length ? people : search)
+        setData(search.length ? search : people)
     }, [people, search])
+
+    useEffect(() => {
+        if(!loaded){
+            dispatch(getPeopleForCountry(country))
+        }
+    }, [country, dispatch, loaded])
 
     if(failSearch){
         return (
@@ -44,4 +52,4 @@ function MissingPeopleList(){
     )
 }
 
-export default MissingPeopleList
+export default React.memo(MissingPeopleList)

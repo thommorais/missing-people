@@ -6,12 +6,12 @@ import {
 } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { getCountries, chooseCountry } from '../../store/ducks/location/thunks'
-import { getPeopleForCountry } from '../../store/ducks/people/thunks'
 
 const { Option } = Select
 
 function Header({history}){
     const {countries, country} = useSelector(state => state.location)
+    const {dataLocation} = useSelector(({missingPeople}) => missingPeople)
 
     const dispatch = useDispatch()
 
@@ -19,15 +19,11 @@ function Header({history}){
         dispatch(getCountries())
     }, [dispatch])
 
-    useEffect(() => {
-        dispatch(getPeopleForCountry(country))
-    }, [country, dispatch])
-
     const onChange = useCallback(country => dispatch(chooseCountry(country)), [])
 
     return (
         <header className="flex bg-white border-b border-gray-200 inset-x-0 z-50 items-center py-2 sticky top-0">
-                <div className="w-full max-w-6xl relative mx-auto">
+                <div className="w-full max-w-6xl relative mx-auto px-4">
                     <div className="flex items-center flex-wrap justify-between">
                         <div className="px-6 mb-2 sm:mb-0">
                              <Link to="/">
@@ -38,22 +34,29 @@ function Header({history}){
                             </Link>
                         </div>
 
-                        <div className={`flex px-6 ${history.location.pathname === '/' ? 'active' : 'inactive'}`}>
-                            <Select
-                                    showSearch
-                                    defaultValue={country}
-                                    placeholder="Select a country"
-                                    optionFilterProp="children"
-                                    onChange={onChange}
-                                    filterOption={(input, option) =>
-                                    option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
-                                    }
-                                >
-                                    {countries.map(country => <Option key={country} value={country}>{country}</Option>)}
+                        <div className="flex items-center">
+                            <div className={`flex px-6 ${history.location.pathname === '/' ? 'active' : 'inactive'}`}>
+                                <Select
+                                        showSearch
+                                        defaultValue={country}
+                                        placeholder="Select a country"
+                                        optionFilterProp="children"
+                                        onChange={onChange}
+                                        filterOption={(input, option) =>
+                                        option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+                                        }
+                                    >
+                                        {countries.map(country => <Option key={country} value={country}>{country}</Option>)}
 
-                                </Select>
+                                    </Select>
+                            </div>
+                            <div className="text-xs">
+                                Data from: {' '}
+                                <span className="bg-teal-700 text-white text-sx px-3 py-1 rounded-full">
+                                    {dataLocation}
+                                </span>
+                            </div>
                         </div>
-
                     </div>
                 </div>
            </header>

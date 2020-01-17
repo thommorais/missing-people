@@ -1,11 +1,14 @@
 import { Creators } from './index'
-import {fetchPeople, fetchPeopleForCountry} from '../../../services'
+import {fetchPeople, fetchPeopleForCountry, fetchPerson} from '../../../services'
 
-const {
+export const {
   get,
   search,
   loading,
-  failSearch
+  failSearch,
+  setDataLocation,
+  getOnePerson,
+  setPerson
 } = Creators
 
 
@@ -45,6 +48,7 @@ export function setSearch(string){
 }
 
 export function getMissingPeople() {
+  console.log('getting all the people')
   return async (dispatch) => {
     dispatch(loading())
     const people = await fetchPeople().then(e => e)
@@ -54,13 +58,39 @@ export function getMissingPeople() {
 }
 
 export function getPeopleForCountry(country){
+  console.log('getting people for country', country)
   return async (dispatch) => {
     dispatch(loading())
     const {data, headers} = await fetchPeopleForCountry(country)
-    console.log(headers)
+    dispatch(setDataLocation(headers['x-powered-by']))
     const formatedData = filterDataPeople(data)
     dispatch(get(formatedData))
   }
 }
 
+export function getPerson(){
 
+  const uid = localStorage.getItem('uid')
+
+  return async (dispatch) => {
+    dispatch(loading())
+
+    if(!uid){
+       return dispatch(setPerson(null))
+    }
+
+    const {data, headers} = await fetchPerson(uid)
+    dispatch(setDataLocation(headers['x-powered-by']))
+    const [formatedData] = filterDataPeople(data)
+    return dispatch(setPerson(formatedData))
+  }
+}
+
+export function setCurrentPerson(person){
+  return async (dispatch) => {
+    if(person){
+      localStorage.setItem('uid', person.uid)
+      dispatch(setPerson(person))
+    }
+  }
+}

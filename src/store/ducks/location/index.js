@@ -57,26 +57,15 @@ function location(state = initialState, action) {
   const { payload, type } = action
 
   switch (type) {
+
     case Types.GET: {
       return { ...state, locations: {...state.locations, ...payload.location} }
     }
 
-    case Types.SEARCH: {
-      return { ...state, ...payload}
-    }
-
-    case Types.GET_COUNTRIES: {
-      return { ...state, ...payload}
-    }
-
-    case Types.SET_COUNTRY: {
-      return { ...state, ...payload}
-    }
-
-    case Types.LOADING: {
-      return { ...state, ...payload}
-    }
-
+    case Types.SEARCH:
+    case Types.GET_COUNTRIES:
+    case Types.SET_COUNTRY:
+    case Types.LOADING:
     case Types.FAIL: {
       return { ...state, ...payload}
     }
